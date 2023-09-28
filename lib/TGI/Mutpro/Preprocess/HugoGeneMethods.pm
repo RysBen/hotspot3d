@@ -10,12 +10,12 @@ package TGI::Mutpro::Preprocess::HugoGeneMethods;
 #
 use strict;
 use warnings;
-our $VERSION = '0.3';
+our $VERSION = '0.3.1';    # modified by rys: (1)[line 18] $HugoUrl; (2)[line 124] first line regex
 
 use Carp;
 use LWP::Simple;
 use TGI::Mutpro::Preprocess::HugoGene;
-my $HugoUrl = "https://www.genenames.org/cgi-bin/hgnc_downloads?".
+my $HugoUrl = "https://www.genenames.org/cgi-bin/download/custom?".
     "title=HGNC+output+data&hgnc_dbtag=on&".
     "col=gd_hgnc_id&".
     "col=gd_app_sym&".
@@ -121,7 +121,7 @@ sub makeHugoGeneObjects {
 		die "HotSpot3D::HugoGeneMethods::makeHugoGeneObjects ERROR: no data from url request. Installing Mozilla::CA might fix this issue\n";
 	}
     foreach my $line (split /\n/, $page) {
-		if ($line =~ /withdrawn/i || $line =~ /HGNC ID\s+Approved\s+Symbol\s+/) { next; }
+		if ($line =~ /withdrawn/i || $line =~ /HGNC ID\s+Approved\s+symbol\s+/) { next; }
 		my @entries = split /\t/, $line;
 		my $hugo = $entries[1];
 		$hugo =~ s/\s+//g;
