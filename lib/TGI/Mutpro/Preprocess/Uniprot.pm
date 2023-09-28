@@ -7,7 +7,7 @@ package TGI::Mutpro::Preprocess::Uniprot;
 # $URL: $
 # $Doc: $ uniprot download and processing 
 #----------------------------------
-#
+# modified by rys: (1)[line 47] $uniProtUrl; (2) [line 202] regex;
 use strict;
 use warnings;
 
@@ -44,7 +44,7 @@ sub retrieveRecordFromUniprot {
     # Download current record from Uniprot web site.
     my $self = shift;
     my $uniprotId = $self->uniprotId();
-    my $uniProtUrl = "http://www.uniprot.org/uniprot/$uniprotId.txt";
+    my $uniProtUrl = "https://www.uniprot.org/uniprot/$uniprotId.txt";
     my $page = get($uniProtUrl);
     if ( !defined $page ) { $page = "empty"; }
     $self->{PAGE} = $page;
@@ -199,7 +199,8 @@ sub domainsAfterPosition {
     map{ $skipList{$_} = 1; } @skipThese;
     foreach $line ( split /\n/, $self->entireRecord() ) {
 	chomp $line;
-	if ( $line =~ /FT\s+(\S+)\s+(\d+)\s+(\d+)\s+(.*)/ && $3 > $position ) { 
+	#if ( $line =~ /FT\s+(\S+)\s+(\d+)\s+(\d+)\s+(.*)/ && $3 > $position ) { 
+        if ( $line =~ /FT\s+(\S+)\s+(\d+)\.\.(\d+)(.*)?/ && $3 > $position ) {
 	    $key = $1; $dmStart = $2; $dmStop = $3; $desc = $4;
 	    next if ( defined $skipList{$key} );
 	    push @domains, "$key\t($dmStart, $dmStop)\t$desc";
