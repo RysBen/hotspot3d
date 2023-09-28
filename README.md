@@ -3,7 +3,7 @@ HotSpot3D
 
 This 3D proximity tool can be used to identify mutation hotspots from linear protein sequence and correlate the hotspots with known or potentially interacting domains, mutations, or drugs. Mutation-mutation and mutation-drug clusters can also be identified and viewed.
 
-Usage
+1.Usage
 -----
 
         Program:     HotSpot3D - 3D mutation proximity analysis program.
@@ -35,21 +35,8 @@ Usage
                  summary   --  d) Summarize clusters (OPTIONAL)
                  visual    --  e) Visulization of 3D proximity (OPTIONAL)
 
-Support
--------
 
-For user support please email ruiyang.liu@wustl.edu & bniu@sccas.cn
-
-
-Update
-------
-
-To reinstall code of the same version (in some cases, may need --sudo):
-
-	cpanm --reinstall HotSpot3D-#.tar.gz
-
-
-Install (Ubuntu 14.04.01)
+2.Install (Ubuntu 14.04.01)
 -------
 
 Make sure that you have cpanm:
@@ -126,7 +113,7 @@ Configure Environment
 		bzip2 -d cosmic_67_for_HotSpot3D_missense_only.tsv.bz2
 
 
-Example - Preprocessing
+3.Preprocessing
 -----------------------
 
 ## Download from Synapse
@@ -157,8 +144,12 @@ NOTE: Proximity data only contains pairs within 20Angstroms between mutations. T
 
 		hotspot3d prep --output-dir=preprocessing_dir
 
+After download, adjust dir structure, and a proper dir structure is as below:
+![image](https://github.com/ding-lab/hotspot3d/assets/36749963/9b22345a-3d09-49c9-9f92-a9f519a0e6e0)
 
-Example - Analysis
+
+
+4.Example - Analysis
 ------------------
 
 3D proximity searching based on prioritization results and visualization
