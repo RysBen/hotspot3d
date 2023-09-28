@@ -144,6 +144,10 @@ Example - Preprocessing
 
 NOTE: Proximity data only contains pairs within 20Angstroms between mutations. This should be sufficient for many HotSpot3D applications.
 
+After download, adjust dir structure, and a proper dir structure is as below:
+![image](https://github.com/RysBen/hotspot3d/assets/36749963/36901bbd-6832-43c7-ad54-7d7e44689e3f)
+
+
 ## Generate on your own
 1. (Optional) Run drugport module to parse Drugport data and generate a drugport parsing results flat file :
 
