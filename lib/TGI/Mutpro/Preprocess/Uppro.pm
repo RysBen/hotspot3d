@@ -10,7 +10,7 @@ package TGI::Mutpro::Preprocess::Uppro;
 #
 use strict;
 use warnings;
-our $VERSION = '0.4';
+our $VERSION = '0.4.1';    #modified by rys: [line 206] bsub to sbatch;
 
 use Carp;
 use Cwd;
@@ -206,7 +206,7 @@ sub makeBSUBCalproCommand {
 	map {
 		system("touch $inpro_dir/$_.ProximityFile.csv");
 		my $command = "";
-		$command = "bsub -oo ".$log_dir.$_.".calpro.log -R 'select[type==LINUX64 && mem>16000] rusage[mem=16000]' -M 16000000 ";
+		$command = "sbatch -o ".$log_dir.$_.".calpro.log --mem=16G -c 1 --wrap";
 		$command .= "'".$this->makeCalproCommand( $_ )."'";
 		print STDOUT $command."\n"; 
 		$cmd_list_submit_file_fh->print( $command."\n" );
